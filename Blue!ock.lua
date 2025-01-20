@@ -1,6 +1,7 @@
 -- dont steal if you steal = 🟥[[ UR GAY ]]🟥
 -- i make it open source to make sure begginers learns somethings from this script.
 -- boo 👻
+
 local function set_flow(desired_flow)
     if player:FindFirstChild("PlayerStats") then
         local playerStats = player.PlayerStats
@@ -34,5 +35,8 @@ Section:CreateButton("Dirbbler ( risky )", function()
 game:GetService("ReplicatedStorage").Packages.Knit.Services.FlowService.RE.AuraEquip:FireServer(unpack(args))
   end)
 
+local localPlayer = game:GetService("Players").LocalPlayer
+
 Section:CreateButton("Enable Always Flow ON", function()
-    
+        game:GetService("Players")[localPlayer].PlayerStats.InFlow = true
+    end)    
