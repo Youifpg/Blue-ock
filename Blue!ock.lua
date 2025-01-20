@@ -2,6 +2,8 @@
 -- i make it open source to make sure begginers learns somethings from this script.
 -- boo 👻
 
+local player = game.Players.LocalPlayer
+
 local function set_flow(desired_flow)
     if player:FindFirstChild("PlayerStats") then
         local playerStats = player.PlayerStats
@@ -18,25 +20,21 @@ local Window = Library:NewWindow("Arbix Hub")
 local Section = Window:NewSection("FLOWS")
 
 Section:CreateButton("Prodigy", function()
-    set_flow("Prodigy") then
-    local args = {
-    [1] = "Prodigy"
-}
+    set_flow("Prodigy")
+end)
 
-game:GetService("ReplicatedStorage").Packages.Knit.Services.FlowService.RE.AuraEquip:FireServer(unpack(args))
-  end)
-
-Section:CreateButton("Dirbbler ( risky )", function()
-    set_flow("Dibbler") then
-    local args = {
-    [1] = "Dribbler"
-}
-
-game:GetService("ReplicatedStorage").Packages.Knit.Services.FlowService.RE.AuraEquip:FireServer(unpack(args))
-  end)
+Section:CreateButton("Dribbler (risky)", function()
+    set_flow("Dribbler")
+end)
 
 local localPlayer = game:GetService("Players").LocalPlayer
 
 Section:CreateButton("Enable Always Flow ON", function()
-        game:GetService("Players")[localPlayer].PlayerStats.InFlow = true
-    end)    
+    if localPlayer:FindFirstChild("PlayerStats") and localPlayer.PlayerStats:FindFirstChild("InFlow") then
+        localPlayer.PlayerStats.InFlow.Value = true
+        local args = {
+        [1] = "Prodigy"
+    }
+    game:GetService("ReplicatedStorage").Packages.Knit.Services.FlowService.RE.AuraEquip:FireServer(unpack(args))
+    end
+end)
